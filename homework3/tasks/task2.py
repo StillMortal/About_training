@@ -22,6 +22,7 @@ import hashlib
 import random
 import struct
 import time
+from multiprocessing import Pool
 
 
 def slow_calculate(value):
@@ -29,3 +30,19 @@ def slow_calculate(value):
     time.sleep(random.randint(1, 3))
     data = hashlib.md5(str(value).encode()).digest()
     return sum(struct.unpack("<" + "B" * len(data), data))
+
+
+start = time.perf_counter()
+if __name__ == "__main__":
+    with Pool(45) as p:
+        total_sum = sum(
+            p.map(
+                slow_calculate,
+                list(range(501)),
+                chunksize=501 // 45,
+            )
+        )
+
+end = time.perf_counter()
+
+print(end - start)

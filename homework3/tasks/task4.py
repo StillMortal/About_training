@@ -32,12 +32,4 @@ def is_armstrong(number: int) -> bool:
 
 
     """
-    digits = [int(i) for i in str(number)]
-
-    @lru_cache(None)
-    def a_num_in_a_power(digit):
-        return pow(digit, len(digits))
-
-    digits = [a_num_in_a_power(i) for i in digits]
-
-    return number == sum(digits)
+    return number == sum(map(lambda x: pow(x, len(str(number))), [int(i) for i in str(number)]))
