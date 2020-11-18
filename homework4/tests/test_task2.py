@@ -1,6 +1,8 @@
-from homework4.tasks.task2 import count_dots_on_i
 from unittest.mock import Mock, patch
+
 import pytest
+
+from homework4.tasks.task2 import count_dots_on_i
 
 
 def test_bad():

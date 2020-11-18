@@ -31,8 +31,8 @@ You will learn:
 ** Энциклопедия профессора Фортрана page 14, 15, "Робот Фортран, чисть картошку!"
 
 """
-from typing import List
 import doctest
+from typing import List
 
 
 def fizzbuzz(n: int) -> List[str]:
@@ -67,7 +67,7 @@ def fizzbuzz(n: int) -> List[str]:
     """
     if n >= 1:
         fizzbuzz_list = []
-        divisors = {15: 'fizzbuzz', 3: 'fizz', 5: 'buzz'}
+        divisors = {15: "fizzbuzz", 3: "fizz", 5: "buzz"}
         for num in range(1, n + 1):
             fizzbuzz_list.append(str(num))
             for key in divisors:
@@ -78,5 +78,6 @@ def fizzbuzz(n: int) -> List[str]:
         raise ValueError("Required positive number")
 
     return fizzbuzz_list
+
 
 doctest.testmod()

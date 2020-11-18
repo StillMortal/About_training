@@ -31,20 +31,20 @@ import requests
 
 def count_dots_on_i(url: str) -> int:
     """Accepts an URL as input
-and count how many letters `i` are present in the HTML by this URL.
+    and count how many letters `i` are present in the HTML by this URL.
 
-    Args:
-        url: URL for the search engine.
+        Args:
+            url: URL for the search engine.
 
-    Returns:
-        The number of "i" characters.
+        Returns:
+            The number of "i" characters.
 
     """
     try:
         response = requests.get(url)
         num_of_i = 0
         if response.ok:
-            for sym in (response.iter_content()):
+            for sym in response.iter_content():
                 num_of_i += 1 if sym.decode() == "i" else 0
         return num_of_i
     except:

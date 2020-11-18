@@ -28,17 +28,16 @@ import sys
 
 def my_precious_logger(text: str):
     """The function that will receive a string and write it to stderr
-if line starts with "error" and to the stdout otherwise.
+    if line starts with "error" and to the stdout otherwise.
 
-    Args:
-        text: String for analysis.
+        Args:
+            text: String for analysis.
 
-    Returns:
-        Nothing.
+        Returns:
+            Nothing.
 
     """
     if text[:5] != "error":
         sys.stdout.write(text)
     else:
         sys.stderr.write(text)
-
