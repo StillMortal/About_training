@@ -46,3 +46,4 @@ def read_magic_number(path: str) -> bool:
             return True if 1 <= float(first_line) < 3 else False
         except ValueError:
             raise ValueError("A number is required.")
+

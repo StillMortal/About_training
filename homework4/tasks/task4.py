@@ -80,4 +80,3 @@ def fizzbuzz(n: int) -> List[str]:
     return fizzbuzz_list
 
 doctest.testmod()
-

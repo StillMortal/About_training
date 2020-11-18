@@ -41,3 +41,4 @@ if line starts with "error" and to the stdout otherwise.
         sys.stdout.write(text)
     else:
         sys.stderr.write(text)
+

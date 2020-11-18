@@ -40,3 +40,4 @@ def test_read_magic_number_negative(path: str, expected_result: bool):
 def test_read_magic_number_exception(path: str):
     with pytest.raises(ValueError):
         read_magic_number(path)
+

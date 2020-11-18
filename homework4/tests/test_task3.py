@@ -13,4 +13,3 @@ def test_my_err(capsys):
     captured = capsys.readouterr()
 
     assert captured.err == "error"
-
