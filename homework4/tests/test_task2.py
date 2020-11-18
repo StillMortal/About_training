@@ -23,3 +23,4 @@ def test_count_dots_on_i_positive(mock_get):
     mock_get.return_value.ok = True
 
     assert count_dots_on_i("https://example.com/")
+

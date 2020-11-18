@@ -41,38 +41,3 @@ if line starts with "error" and to the stdout otherwise.
         sys.stdout.write(text)
     else:
         sys.stderr.write(text)
-
-
-# my_precious_logger(": file not found")
-# print(sys.stdout.)
-# print(sys.stderr.)
-
-
-
-
-# import sys
-#
-# stdout_fileno = sys.stdout
-#
-# sample_input = ['Hi', 'Hello from AskPython', 'exit']
-#
-# for ip in sample_input:
-#     # Prints to stdout
-#     stdout_fileno.write(ip + '\n')
-
-# import sys
-#
-# stdout_fileno = sys.stdout
-# stderr_fileno = sys.stderr
-#
-# sample_input = ['Hi', 'Hello from AskPython', 'exit']
-#
-# for ip in sample_input:
-#     # Prints to stdout
-#     stdout_fileno.write(ip + '\n')
-#     # Tries to add an Integer with string. Raises an exception
-#     try:
-#         ip = ip + 100
-#     # Catch all exceptions
-#     except:
-#         stderr_fileno.write('Exception Occurred!\n')

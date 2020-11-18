@@ -1,4 +1,3 @@
-import sys
 from homework4.tasks.task3 import my_precious_logger
 
 
@@ -14,3 +13,4 @@ def test_my_err(capsys):
     captured = capsys.readouterr()
 
     assert captured.err == "error"
+

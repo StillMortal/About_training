@@ -1,8 +1,6 @@
 from homework4.tasks.task1 import read_magic_number
-from pathlib import Path
 import os
 import pytest
-from typing import Any
 
 
 @pytest.mark.parametrize(
@@ -42,5 +40,3 @@ def test_read_magic_number_negative(path: str, expected_result: bool):
 def test_read_magic_number_exception(path: str):
     with pytest.raises(ValueError):
         read_magic_number(path)
-
-
