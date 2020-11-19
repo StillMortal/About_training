@@ -21,7 +21,7 @@ Definition of done:
 from typing import Generator
 
 
-def fizzbuzz(n: int) -> Generator:
+def fizzbuzz(n: int) -> Generator[str, None, None]:
     """Takes a number N as an input
     and returns a generator that yields N FizzBuzz numbers.
 
@@ -45,7 +45,6 @@ def fizzbuzz(n: int) -> Generator:
         except KeyError:
             try:
                 number_to_give += fizz_and_buzz[num % 5 + 7]
-                # print("num % 5 ==", num % 5)
                 yield number_to_give
             except KeyError:
                 yield str(num)
