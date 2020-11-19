@@ -44,8 +44,10 @@ def count_dots_on_i(url: str) -> int:
         response = requests.get(url)
         num_of_i = 0
         if response.ok:
-            for sym in response.iter_content():
-                num_of_i += 1 if sym.decode() == "i" else 0
+            for sym in response.text:
+                num_of_i += 1 if sym == "i" else 0
+        else:
+            raise Exception
         return num_of_i
-    except:
+    except Exception:
         raise ValueError(f"Unreachable {url}")

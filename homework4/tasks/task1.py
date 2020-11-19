@@ -43,6 +43,6 @@ def read_magic_number(path: str) -> bool:
         first_line = data.readline()
 
         try:
-            return True if 1 <= float(first_line) < 3 else False
+            return 1 <= float(first_line) < 3
         except ValueError:
             raise ValueError("A number is required.")

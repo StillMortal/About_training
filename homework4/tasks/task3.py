@@ -37,7 +37,7 @@ def my_precious_logger(text: str):
             Nothing.
 
     """
-    if text[:5] != "error":
-        sys.stdout.write(text)
-    else:
+    if text.startswith("error"):
         sys.stderr.write(text)
+    else:
+        sys.stdout.write(text)
