@@ -47,9 +47,6 @@ def save_func_info(func):
     return decorator_save_func_info
 
 
-# wrapper = save_func_info(wrapper)(func)
-
-
 def print_result(func):
     @save_func_info(func)
     def wrapper(*args, **kwargs):
