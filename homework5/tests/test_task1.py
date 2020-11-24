@@ -41,20 +41,35 @@ def test_creation_of_a_homework_object(
     assert (actual_result.text, actual_result.deadline) == expected_result
 
 
-def test_overdue_homework(capsys):
+def test_overdue_homework():
+    actual_result = Teacher.create_homework("Do it", 0)
+
+    assert actual_result.is_active() is False
+
+
+def test_overdue_homework_and_staticmethod_do_homework_returns_None():
     actual_result = Teacher.create_homework("Do it", 0)
     actual_result2 = Student.do_homework(actual_result)
+
+    assert actual_result2 is None
+
+
+def test_overdue_homework_and_staticmethod_do_homework_print_to_stdout(capsys):
+    actual_result = Teacher.create_homework("Do it", 0)
+    Student.do_homework(actual_result)
     captured = capsys.readouterr()
 
-    assert (
-        actual_result.is_active() is False
-        and actual_result2 is None
-        and captured.out == "You are late.\n"
-    )
+    assert captured.out == "You are late.\n"
 
 
 def test_there_is_still_time_for_homework():
     actual_result = Teacher.create_homework("Just do it", 1)
+
+    assert actual_result.is_active() is True
+
+
+def test_staticmethod_do_homework_returns_Homework_object():
+    actual_result = Teacher.create_homework("Just do it", 1)
     actual_result2 = Student.do_homework(actual_result)
 
-    assert actual_result.is_active() is True and isinstance(actual_result2, Homework)
+    assert isinstance(actual_result2, Homework)

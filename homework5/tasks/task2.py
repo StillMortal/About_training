@@ -17,12 +17,13 @@ print(custom_sum.__name__)  # 'custom_sum'
 print(custom_sum.__original_func)  # <function custom_sum at <some_id>>
 
 """
-
 import functools
+from typing import Callable
 
 
-def save_func_info(func):
-    """The decorator that accepts the function name and
+def save_func_info(func: Callable) -> Callable:
+    """
+    The decorator that accepts the function name and
     stores the initial __name__, __doc__.
     Also creates the __original_func attribute with the name of the initial function.
 
@@ -36,8 +37,7 @@ def save_func_info(func):
 
     def decorator_save_func_info(initial_func):
         def wrapper_save_func_info(*args, **kwargs):
-            result = initial_func(*args, **kwargs)
-            return result
+            return initial_func(*args, **kwargs)
 
         wrapper_save_func_info.__name__ = func.__name__
         wrapper_save_func_info.__doc__ = func.__doc__

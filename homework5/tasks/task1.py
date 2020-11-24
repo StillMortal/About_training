@@ -39,29 +39,28 @@ PEP8 соблюдать строго.
 
 """
 import datetime
-from typing import Any, NoReturn
+from typing import Union
 
 
 class Homework:
-    """What you should do"""
+    """
+    Create a new Homework object from the given str object and int object.
+    The text and deadline arguments are required.
 
-    def __init__(self, text: str, deadline: int) -> NoReturn:
-        """Constructor.
+    Args:
+        text: A string representing the homework.
+        deadline: Number of days to complete your homework.
 
-        Args:
-            text: A string representing the homework.
-            deadline: Number of days to complete your homework.
+    """
 
-        Returns:
-            NoReturn.
-
-        """
+    def __init__(self, text: str, deadline: int) -> None:
         self.text = text
         self.deadline = datetime.timedelta(days=deadline)
         self.created = datetime.datetime.now()
 
     def is_active(self) -> bool:
-        """Whether the time for completing your homework is up.
+        """
+        Whether the time for completing your homework is up.
 
         Returns:
             True if successful, False otherwise.
@@ -71,25 +70,24 @@ class Homework:
 
 
 class Student:
-    """Personal data of a student."""
+    """
+    Create a new Student object from the given str object and str object.
+    Given str object and str object are the student's last name and first name.
 
-    def __init__(self, last_name="", first_name="") -> NoReturn:
-        """Constructor.
+    Args:
+        last_name: Last name of a student.
+        first_name: First name of a student.
 
-        Args:
-            last_name: Last name of a student.
-            first_name: First name of a student.
+    """
 
-        Returns:
-            NoReturn
-
-        """
+    def __init__(self, last_name: str = "", first_name: str = "") -> None:
         self.last_name = last_name
         self.first_name = first_name
 
     @staticmethod
-    def do_homework(hw: Homework) -> Any:
-        """Whether the time for completing your homework is up.
+    def do_homework(hw: Homework) -> Union[Homework, None]:
+        """
+        Whether the time for completing your homework is up.
 
         Args:
             hw: Homework instance.
@@ -106,25 +104,24 @@ class Student:
 
 
 class Teacher:
-    """Personal data of a teacher."""
+    """
+    Create a new Teacher object from the given str object and str object.
+    Given str object and str object are the teacher's last name and first name.
 
-    def __init__(self, last_name="", first_name="") -> NoReturn:
-        """Constructor.
-
-        Args:
+    Args:
             last_name: Last name of a teacher.
             first_name: First name of a teacher.
 
-        Returns:
-            NoReturn.
+    """
 
-        """
+    def __init__(self, last_name: str = "", first_name: str = "") -> None:
         self.last_name = last_name
         self.first_name = first_name
 
     @staticmethod
     def create_homework(text: str, deadline: int) -> Homework:
-        """Creates a Homework instance.
+        """
+        Creates a Homework instance.
 
         Args:
             text: A string representing the homework.
