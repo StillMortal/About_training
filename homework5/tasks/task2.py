@@ -22,8 +22,7 @@ from typing import Callable
 
 
 def save_func_info(func: Callable) -> Callable:
-    """
-    The decorator that accepts the function name and
+    """The decorator that accepts the function name and
     stores the initial __name__, __doc__.
     Also creates the __original_func attribute with the name of the initial function.
 

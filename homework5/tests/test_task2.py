@@ -2,8 +2,7 @@ from homework5.tasks.task2 import print_result
 
 
 def sum_of_only_three_parameters(a, b, c, *args):
-    """
-    Finds the sum of only three parameters.
+    """Finds the sum of only three parameters.
 
     Args:
         a: The first element of the sum.

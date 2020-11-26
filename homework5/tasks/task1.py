@@ -43,13 +43,17 @@ from typing import Union
 
 
 class Homework:
-    """
-    Create a new Homework object from the given str object and int object.
+    """Create a new Homework object from the given str object and int object.
     The text and deadline arguments are required.
 
     Args:
         text: A string representing the homework.
         deadline: Number of days to complete your homework.
+
+    Attributes:
+        text: A string representing the homework.
+        deadline: Number of days to complete your homework.
+        created: The time when the homework was created.
 
     """
 
@@ -59,8 +63,7 @@ class Homework:
         self.created = datetime.datetime.now()
 
     def is_active(self) -> bool:
-        """
-        Whether the time for completing your homework is up.
+        """Whether the time for completing your homework is up.
 
         Returns:
             True if successful, False otherwise.
@@ -70,11 +73,14 @@ class Homework:
 
 
 class Student:
-    """
-    Create a new Student object from the given str object and str object.
+    """Create a new Student object from the given str object and str object.
     Given str object and str object are the student's last name and first name.
 
     Args:
+        last_name: Last name of a student.
+        first_name: First name of a student.
+
+    Attributes:
         last_name: Last name of a student.
         first_name: First name of a student.
 
@@ -86,8 +92,7 @@ class Student:
 
     @staticmethod
     def do_homework(hw: Homework) -> Union[Homework, None]:
-        """
-        Whether the time for completing your homework is up.
+        """Whether the time for completing your homework is up.
 
         Args:
             hw: Homework instance.
@@ -104,13 +109,16 @@ class Student:
 
 
 class Teacher:
-    """
-    Create a new Teacher object from the given str object and str object.
+    """Create a new Teacher object from the given str object and str object.
     Given str object and str object are the teacher's last name and first name.
 
     Args:
-            last_name: Last name of a teacher.
-            first_name: First name of a teacher.
+        last_name: Last name of a teacher.
+        first_name: First name of a teacher.
+
+    Attributes:
+        last_name: Last name of a teacher.
+        first_name: First name of a teacher.
 
     """
 
@@ -120,8 +128,7 @@ class Teacher:
 
     @staticmethod
     def create_homework(text: str, deadline: int) -> Homework:
-        """
-        Creates a Homework instance.
+        """Creates a Homework instance.
 
         Args:
             text: A string representing the homework.
