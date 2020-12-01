@@ -18,9 +18,7 @@ repos:
     hooks:
     -   id: isort
         args: [
-                  line_length = 88
-                  multi_line_output = 3
-                  include_trailing_comma = True
+                  --multi-line-output = 3
         ]
 
 default_language_version:
