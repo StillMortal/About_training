@@ -18,7 +18,7 @@ repos:
     hooks:
     -   id: isort
         args: [
-                  --multi-line-output = 3
+                  --multi-line = 3
         ]
 
 default_language_version:
