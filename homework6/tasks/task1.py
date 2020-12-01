@@ -12,7 +12,7 @@ reset_instances_counter - сбросить счетчик экземпляров
 import functools
 
 
-def instances_counter(cls):
+def instances_counter(cls: type) -> type:
     """A decorator that is applied to a class and adds two new methods to it:
     - get_created_instances
     - reset_instances_counter
@@ -24,44 +24,67 @@ def instances_counter(cls):
         A reference to a class with two new methods.
 
     """
+    cls.__instance_counter = 0
 
-    def decorator_new_method(func):
-        @functools.wraps(func)
-        def wrapper_new_method(cls_par, *args, **kwargs):
-            get_created_instances(1)
-            return func(cls_par, *args, **kwargs)
+    link_to_the_old_init = cls.__init__
 
-        return wrapper_new_method
+    @functools.wraps(cls.__init__)
+    def __init__(self, *args, **kwargs):
+        cls.__instance_counter += 1
 
-    cls.__new__ = decorator_new_method(cls.__new__)
+        return link_to_the_old_init(self, *args, **kwargs)
 
-    def get_created_instances(*args, counter=[0], **kwargs):
-        if args and args[0] == 1:
-            counter[0] += 1
-        elif args and args[0] == 0:
-            counter[0] = 0
-        return counter[0]
+    cls.__init__ = __init__
 
-    setattr(cls, "get_created_instances", get_created_instances)
+    @classmethod
+    def get_created_instances(cls: type) -> type:
+        """Counts the number of instances of the class.
 
-    def reset_instances_counter(*args, **kwargs):
-        instances_have_already_been_created = cls.get_created_instances()
-        cls.get_created_instances(0)
-        return instances_have_already_been_created
+        Args:
+            cls: Reference to the class.
 
-    setattr(cls, "reset_instances_counter", reset_instances_counter)
+        Returns:
+            The number of instances of the class.
+
+        """
+        return cls.__instance_counter
+
+    cls.get_created_instances = get_created_instances
+
+    @classmethod
+    def reset_instances_counter(cls: type) -> type:
+        """Resets the instance counter.
+
+        Args:
+            cls: Reference to the class.
+
+        Returns:
+            The number of instances of the class before resetting.
+
+        """
+        local_instance_counter = cls.__instance_counter
+        cls.__instance_counter = 0
+
+        return local_instance_counter
+
+    cls.reset_instances_counter = reset_instances_counter
 
     return cls
 
 
 @instances_counter
 class User:
-    pass
+    def __init__(self, num):
+        self.num = num
 
 
 if __name__ == "__main__":
 
     User.get_created_instances()  # 0
-    user, _, _ = User(), User(), User()
+    User.__init__  # <function User.__init__ at 0x01CA85C8>
+    user, _, _ = User(7), User(4), User(5)
+    user.num  # 7
+    _.num  # 5
+    User.get_created_instances()  # 3
     user.get_created_instances()  # 3
     user.reset_instances_counter()  # 3

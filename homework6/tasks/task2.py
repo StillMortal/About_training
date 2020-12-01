@@ -53,11 +53,10 @@ from __future__ import annotations
 
 import datetime
 from collections import defaultdict
-from typing import Union
 
 
 class DeadlineError(Exception):
-    """New Exception. It is called when Homework.is_active() == False."""
+    """The deadline is now"""
 
     pass
 
@@ -92,8 +91,27 @@ class Homework:
         return datetime.datetime.now() - self.created < self.deadline
 
 
-class Student:
-    """Create a new Student object from the given str object and str object.
+class Person:
+    """Creates a new Person object from the given str object and str object.
+    Given str object and str object are the student's last name and first name.
+
+    Args:
+        first_name: First name of a person.
+        last_name: Last name of a person.
+
+    Attributes:
+        first_name: First name of a person.
+        last_name: Last name of a person.
+
+    """
+
+    def __init__(self, first_name, last_name):
+        self.first_name = first_name
+        self.last_name = last_name
+
+
+class Student(Person):
+    """Creates a new Student object from the given str object and str object.
     Given str object and str object are the student's last name and first name.
 
     Args:
@@ -106,11 +124,7 @@ class Student:
 
     """
 
-    def __init__(self, first_name: str = "", last_name: str = "") -> None:
-        self.first_name = first_name
-        self.last_name = last_name
-
-    def do_homework(self, hw: Homework, solution: str) -> Union[HomeworkResult, None]:
+    def do_homework(self, hw: Homework, solution: str) -> HomeworkResult:
         """Whether the time for completing your homework is up.
 
         Args:
@@ -118,17 +132,19 @@ class Student:
             solution: The solution of the student.
 
         Returns:
-            HomeworkResult instance if successful, None otherwise.
+            HomeworkResult instance if successful.
+
+        Raises:
+            DeadlineError: If the deadline for completing your homework is over.
 
         """
         if hw.is_active():
             return HomeworkResult(self, hw, solution)
-        else:
-            raise DeadlineError("You are late.")
+        raise DeadlineError("You are late.")
 
 
-class Teacher(Student):
-    """Create a new Teacher object from the given str object and str object.
+class Teacher(Person):
+    """Creates a new Teacher object from the given str object and str object.
     Given str object and str object are the teacher's last name and first name.
 
     Args:
@@ -142,9 +158,6 @@ class Teacher(Student):
     """
 
     homework_done = defaultdict(dict)
-
-    def __init__(self, first_name: str = "", last_name: str = "") -> None:
-        super().__init__(first_name, last_name)
 
     @staticmethod
     def create_homework(text: str, deadline: int) -> Homework:
@@ -160,7 +173,8 @@ class Teacher(Student):
         """
         return Homework(text, deadline)
 
-    def check_homework(self, hw_result: HomeworkResult) -> bool:
+    @classmethod
+    def check_homework(cls, hw_result: HomeworkResult) -> bool:
         """Checks if the solution is longer than 5 characters.
 
         Args:
@@ -173,8 +187,8 @@ class Teacher(Student):
         if len(hw_result.solution) < 6:
             return False
 
-        if hw_result.solution not in self.homework_done[hw_result.homework]:
-            self.homework_done[hw_result.homework][hw_result.solution] = hw_result
+        if hw_result.solution not in cls.homework_done[hw_result.homework]:
+            cls.homework_done[hw_result.homework][hw_result.solution] = hw_result
 
         return True
 
@@ -187,11 +201,9 @@ class Teacher(Student):
             homework: Homework object.
 
         """
-        try:
-            del Teacher.homework_done[homework]
-        except KeyError:
-            if homework:
-                raise ValueError("This Homework instance does not exist.")
+        if homework:
+            Teacher.homework_done.pop(homework, None)
+        else:
             Teacher.homework_done = defaultdict(dict)
 
 
@@ -213,7 +225,10 @@ class HomeworkResult:
 
     def __init__(self, author: Student, homework: Homework, solution: str) -> None:
         if not isinstance(homework, Homework):
-            raise ValueError("This is not a Homework object")
+            raise TypeError(
+                f"{homework} is not a Homework object. "
+                f"Second parameter must be Homework object."
+            )
         self.author = author
         self.homework = homework
         self.solution = solution
@@ -247,6 +262,6 @@ if __name__ == "__main__":
     opp_teacher.check_homework(result_2)  # True
     opp_teacher.check_homework(result_3)  # False
 
-    print(Teacher.homework_done[oop_hw])
+    Teacher.homework_done[oop_hw]  # There was an exception here
     Teacher.reset_results()
-    print(Teacher.homework_done)  # defaultdict(<class 'dict'>, {})
+    Teacher.homework_done  # defaultdict(<class 'dict'>, {})
