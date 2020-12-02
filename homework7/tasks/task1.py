@@ -29,6 +29,17 @@ example_tree = {
 
 
 def find_occurrences(tree: Any, element: Any, num_of_occurrences: int = 0) -> int:
+    """Finds the number of occurrences of an element in the tree.
+
+    Args:
+        tree: Where to search for the element.
+        element: Element the number of occurrences to find.
+        num_of_occurrences: The counter element
+
+    Returns:
+        Number of occurrences.
+
+    """
     if element == tree:
         return num_of_occurrences + 1
     elif isinstance(tree, (list, tuple, set)):
