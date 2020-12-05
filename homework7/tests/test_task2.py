@@ -36,6 +36,7 @@ def test_two_strings_in_backspace_compare_func_are_equal(
         ("ab##7", "ab##8", False),
         ("1ab##7", "1ab##8", False),
         ("a#bc#", "a#dc#", False),
+        ("abb", "bb", False),
     ],
 )
 def test_two_strings_in_backspace_compare_func_are_not_equal(
