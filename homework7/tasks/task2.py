@@ -18,6 +18,7 @@ Examples:
     Explanation: s becomes "c" while t becomes "b".
 
 """
+from itertools import zip_longest
 
 
 def getting_rid_of_backspaces(string: str) -> str:
@@ -27,21 +28,18 @@ def getting_rid_of_backspaces(string: str) -> str:
         string: A string with backspaces.
 
     Returns:
-        String after using backspaces.
+        Generator.
 
     """
 
     num_of_backspaces = 0
-    list_of_characters_without_backspaces = []
     for char in reversed(string):
         if char == "#":
             num_of_backspaces += 1
         elif num_of_backspaces == 0:
-            list_of_characters_without_backspaces.append(char)
+            yield char
         else:
             num_of_backspaces -= 1
-
-    return "".join(list_of_characters_without_backspaces)
 
 
 def backspace_compare(first: str, second: str):
@@ -56,4 +54,9 @@ def backspace_compare(first: str, second: str):
 
     """
 
-    return getting_rid_of_backspaces(first) == getting_rid_of_backspaces(second)
+    for char_of_the_first, char_of_the_second in zip_longest(
+        getting_rid_of_backspaces(first), getting_rid_of_backspaces(second)
+    ):
+        if char_of_the_first != char_of_the_second:
+            return False
+    return True

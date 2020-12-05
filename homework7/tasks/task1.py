@@ -28,28 +28,24 @@ example_tree = {
 }
 
 
-def find_occurrences(tree: Any, element: Any, num_of_occurrences: int = 0) -> int:
+def find_occurrences(tree: Any, element: Any) -> int:
     """Finds the number of occurrences of an element in the tree.
 
     Args:
         tree: Where to search for the element.
         element: Element the number of occurrences to find.
-        num_of_occurrences: The counter element
 
     Returns:
         Number of occurrences.
 
     """
     if element == tree:
-        return num_of_occurrences + 1
+        return 1
     elif isinstance(tree, (list, tuple, set)):
-        for node in tree:
-            num_of_occurrences += find_occurrences(node, element)
+        return sum(find_occurrences(node, element) for node in tree)
     elif isinstance(tree, dict):
-        for key in tree:
-            num_of_occurrences += find_occurrences(key, element)
-            num_of_occurrences += find_occurrences(tree[key], element)
-    return num_of_occurrences
+        return sum(find_occurrences(value, element) for value in tree.values())
+    return 0
 
 
 if __name__ == "__main__":
