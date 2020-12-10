@@ -38,38 +38,25 @@ class KeyValueStorage:
     Attributes:
         pairs: A dictionary containing a key and value pair.
 
-    Raises:
-        ValueError: if the key is not the correct attribute.
-
+    Examples:
+        >>> pair = KeyValueStorage(file_path)
+        >>> pair['some_key']
+        some_value
 
     """
 
     def __init__(self, path_to_file: str) -> None:
         with open(path_to_file) as data:
-            key_and_value = data.read().split()
-
-        self.pairs = {}
+            key_and_value = data.read().strip().split()
 
         for pair in key_and_value:
             pair = pair.split("=")
 
-            self.__setattr__(pair[0], pair[1])
-
-    def __setattr__(self, key: str, value: Union[int, str]) -> None:
-        """Adds a key-value pair to the dictionary.
-
-        Args:
-            key: Key to the dictionary.
-            value: Value to the dictionary.
-
-        """
-        if self.__correct_attribute(key):
-            try:
-                self.__dict__[key] = int(value)
-                self.__setitem__(key, int(value))
-            except (ValueError, TypeError):
-                self.__dict__[key] = value
-                self.__setitem__(key, value)
+            if self.__correct_attribute(pair[0]):
+                try:
+                    self.__setattr__(pair[0], int(pair[1]))
+                except (ValueError, TypeError):
+                    self.__setattr__(pair[0], pair[1])
 
     def __correct_attribute(self, attribute: str) -> Union[bool, None]:
         """Checks whether the received string object can be an attribute.
@@ -81,35 +68,18 @@ class KeyValueStorage:
             True if successful.
 
         """
-        if attribute[0] != "_" and attribute[0] not in ascii_letters:
+        if attribute[0] not in f"_{ascii_letters}":
             raise ValueError(f"the value {attribute} cannot be an attribute.")
 
         for char in attribute:
-            if char != "_" and char not in ascii_letters and char not in digits:
+            if char not in f"_{ascii_letters}{digits}":
                 raise ValueError(f"the value {attribute} cannot be an attribute.")
 
         if attribute not in self.__dir__():
             return True
 
     def __getitem__(self, key: str) -> Union[int, str]:
-        """Returns the value by key.
-
-        Args:
-            key: Key to the dictionary.
-
-        Returns:
-            Value.
-
-
-        """
-        return self.pairs[key]
+        return self.__dict__[key]
 
     def __setitem__(self, key: str, value: Union[int, str]) -> None:
-        """Sets the dictionary value by key.
-
-        Args:
-            key: Key to the dictionary.
-            value: Value to the dictionary.
-
-        """
-        self.pairs[key] = value
+        self.__dict__[key] = value
