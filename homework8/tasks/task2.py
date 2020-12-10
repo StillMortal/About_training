@@ -23,7 +23,7 @@ Use supplied example.sqlite file as database fixture file.
 
 """
 import sqlite3
-from typing import Tuple
+from typing import Tuple, Union
 
 
 class TableData:
@@ -46,7 +46,7 @@ class TableData:
     def __init__(self, database_name: str, table_name: str) -> None:
         self.database_name = database_name
         self.table_name = table_name
-        self.new_connection = self.__new_connection()
+        self.next_is_not_used = True
 
     def __len__(self) -> int:
         """Counts the number of rows in the database.
@@ -57,7 +57,7 @@ class TableData:
         """
         return sum(1 for _ in self.__new_connection())
 
-    def __getitem__(self, item: str) -> Tuple:
+    def __getitem__(self, item: str) -> Union[Tuple, None]:
         """Allows you to access the database by 'name' column.
 
         Args:
@@ -67,18 +67,9 @@ class TableData:
             A row in the form of a tuple.
 
         """
-        self.__checking_for_database_updates()
-        return self.rows[item]
-
-    def __setitem__(self, key: str, value: Tuple) -> None:
-        """Adds an item to the dictionary.
-
-        Args:
-            key: Key to the dictionary.
-            value: Value to the dictionary.
-
-        """
-        self.rows[key] = value
+        for row in self.__new_connection():
+            if row[0] == item:
+                return row
 
     def __contains__(self, item: str) -> bool:
         """Checks whether an item exists in database.
@@ -90,8 +81,10 @@ class TableData:
             True if successful, False otherwise.
 
         """
-        self.__checking_for_database_updates()
-        return item in self.existing_names
+        for row in self.__new_connection():
+            if row[0] == item:
+                return True
+        return False
 
     def __iter__(self):
         return self
@@ -103,6 +96,10 @@ class TableData:
             A row in the database.
 
         """
+        if self.next_is_not_used:
+            self.next_is_not_used = False
+            self.new_connection = self.__new_connection()
+            return next(self.new_connection)
         return next(self.new_connection)
 
     def __new_connection(self) -> Tuple:
@@ -122,11 +119,4 @@ class TableData:
 
         conn.close()
 
-    def __checking_for_database_updates(self) -> None:
-        """Checks for database updates."""
-        self.rows = {}
-        self.existing_names = set()
-
-        for row in self.__new_connection():
-            self.existing_names.add(row[0])
-            self.__setitem__(row[0], row)
+        self.next_is_not_used = True
