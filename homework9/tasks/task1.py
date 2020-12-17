@@ -20,6 +20,20 @@ from pathlib import Path
 from typing import Iterator, List, Union
 
 
+def func_for_getting_the_file_object(path: Union[Path, str]) -> Iterator:
+    """Gets the path to the file and returns the file object.
+
+    Args:
+        path: Path to file.
+
+    Returns:
+        The file object.
+
+    """
+    with open(path) as data:
+        yield from data
+
+
 def merge_sorted_files(file_list: List[Union[Path, str]]) -> Iterator:
     """Merges integers in non-decreasing order from sorted files.
 
@@ -32,21 +46,18 @@ def merge_sorted_files(file_list: List[Union[Path, str]]) -> Iterator:
     """
     numbers = []
     heapq.heapify(numbers)
+    open_files = []
 
     for file_number, path in enumerate(file_list):
-        with open(path) as data:
-            heapq.heappush(numbers, [int(data.readline()), file_number, 0])
+        open_files.append(func_for_getting_the_file_object(path))
+        heapq.heappush(numbers, [int(next(open_files[-1])), file_number])
 
     while numbers:
-        min_value, file_number, num_of_the_last_used_string = heapq.heappop(numbers)
+        min_value, file_number = heapq.heappop(numbers)
         yield min_value
 
-        next_num = ""
-        with open(file_list[file_number]) as data:
-            for line_num, line in enumerate(data):
-                if line_num == num_of_the_last_used_string + 1:
-                    next_num = line
-                    break
-
-        if next_num:
-            heapq.heappush(numbers, [int(next_num), file_number, line_num])
+        try:
+            next_num = next(open_files[file_number])
+            heapq.heappush(numbers, [int(next_num), file_number])
+        except StopIteration:
+            pass

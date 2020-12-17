@@ -34,13 +34,13 @@ def universal_file_counter(
     num_of_lines_or_tokens = 0
     if tokenizer is None:
         for path_to_file in glob.iglob(
-            str(dir_path) + "/**/*." + file_extension, recursive=True
+            str(dir_path) + "/*." + file_extension, recursive=False
         ):
             with open(path_to_file) as data:
                 num_of_lines_or_tokens += sum(1 for _ in data)
     else:
         for path_to_file in glob.iglob(
-            str(dir_path) + "/**/*." + file_extension, recursive=True
+            str(dir_path) + "/*." + file_extension, recursive=False
         ):
             with open(path_to_file) as data:
                 for line in data:
