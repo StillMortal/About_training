@@ -1,3 +1,6 @@
+aiohttp
+asynctest
+beautifulsoup4
 pytest
 pytest-sugar
 requests
