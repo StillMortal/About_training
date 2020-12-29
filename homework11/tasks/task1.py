@@ -49,18 +49,28 @@ class SimplifiedEnum(type):
 
     """
 
-    def __new__(mcs, *args, **kwargs):
-        child_dunder_dict = args[-1]
-        mcs.child_name_plus_child_keys_var = "_" + args[0] + "__keys"
-        atribute_names = args[-1][mcs.child_name_plus_child_keys_var]
+    def __new__(mcs, name, bases, attr):
+
+        # super_new = super().__new__(mcs, name, bases, attr)
+        # mcs.child_name_plus_child_keys_var = "_" + super_new.__name__ + "__keys"
+        # atribute_names = super_new.__dict__[mcs.child_name_plus_child_keys_var]
+        # for atribute_name in atribute_names:
+        #     super_new.__dict__[atribute_name] = atribute_name
+
+        # return super_new
+
+        child_dunder_dict = attr
+        mcs.child_name_plus_child_keys_var = "_" + name + "__keys"
+        atribute_names = attr[mcs.child_name_plus_child_keys_var]
         for atribute_name in atribute_names:
             child_dunder_dict[atribute_name] = atribute_name
 
-        return super().__new__(mcs, *args, **kwargs)
+        print(child_dunder_dict)
+
+        return super().__new__(mcs, name, bases, attr)
 
     def __iter__(self):
-        for value in self.__dict__[SimplifiedEnum.child_name_plus_child_keys_var]:
-            yield value
+        yield from self.__dict__[SimplifiedEnum.child_name_plus_child_keys_var]
 
     def __len__(self):
         return len(self.__dict__[SimplifiedEnum.child_name_plus_child_keys_var])

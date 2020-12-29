@@ -29,45 +29,40 @@ order_2 = Order(100, elder_discount)
 assert order_1.final_price() == 10
 
 """
+from abc import ABC
 
 
-class Discount:
-    pass
-
-
-class NoDiscount(Discount):
-    def no_discount(self):
-        return 0
-
-
-class MorningDiscount(Discount):
-    def morning_discount(self):
-        return 0.5
-
-
-class ElderDiscount(Discount):
-    def elder_discount(self):
-        return 0.9
-
-
-class ListOfDiscounts:
-    """Stores and distributes existing discount.
-
-    Attributes:
-        existing_discounts: Stores the discount name as a key and
-        the discount path as a value.
+class Discount(ABC):
+    """The strategy interface declares operations common to all
+    supported versions of some algorithm. The context uses this
+    interface to call the algorithm defined by the concrete strategies.
 
     """
 
-    existing_discounts = {
-        "no_discount": NoDiscount.no_discount,
-        "morning_discount": MorningDiscount.morning_discount,
-        "elder_discount": ElderDiscount.elder_discount,
-    }
+    @classmethod
+    def __init_subclass_(cls):
+        if not hasattr(cls, "discount"):
+            raise NotImplementedError(
+                f"Class {cls} lacks required discount class attribute"
+            )
 
-    @staticmethod
-    def requested_discount(discount):
-        return ListOfDiscounts.existing_discounts[discount]
+    def final_price(self):
+        return self.price - self.price * self.discount_program.discount
+
+
+class NoDiscount(Discount):
+
+    discount = 0
+
+
+class MorningDiscount(Discount):
+
+    discount = 0.5
+
+
+class ElderDiscount(Discount):
+
+    discount = 0.9
 
 
 class Order:
@@ -84,22 +79,23 @@ class Order:
 
     """
 
-    def __init__(self, price, discount_program="no_discount"):
+    def __init__(self, price, discount_program):
         self.price = price
         self.discount_program = discount_program
 
     def final_price(self):
-        return self.price - self.price * ListOfDiscounts.requested_discount(
-            self.discount_program
-        )(self)
+        return self.discount_program.final_price(self)
 
 
 if __name__ == "__main__":
-    order1 = Order(100)
+    order1 = Order(100, NoDiscount)
+    # print(order1.final_price())
     # print(order1.final_price())
 
-    order2 = Order(100, "morning_discount")
-    # print(order2.final_price())
+    order1.discount_program = MorningDiscount
 
-    order3 = Order(100, "elder_discount")
+    # order2 = Order(100, "morning_discount")
+    # print(order1.final_price())
+
+    order3 = Order(100, ElderDiscount)
     # print(order3.final_price())
