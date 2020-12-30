@@ -49,28 +49,22 @@ class SimplifiedEnum(type):
 
     """
 
-    def __new__(mcs, name, bases, attr):
+    def __new__(mcs, name, bases, class_dict):
 
-        # super_new = super().__new__(mcs, name, bases, attr)
-        # mcs.child_name_plus_child_keys_var = "_" + super_new.__name__ + "__keys"
-        # atribute_names = super_new.__dict__[mcs.child_name_plus_child_keys_var]
-        # for atribute_name in atribute_names:
-        #     super_new.__dict__[atribute_name] = atribute_name
+        cls_instance = super().__new__(mcs, name, bases, class_dict)
 
-        # return super_new
+        cls_instance.__keys = class_dict[f"_{name}__keys"]
+        for key in cls_instance.__keys:
+            setattr(cls_instance, key, key)
 
-        child_dunder_dict = attr
-        mcs.child_name_plus_child_keys_var = "_" + name + "__keys"
-        atribute_names = attr[mcs.child_name_plus_child_keys_var]
-        for atribute_name in atribute_names:
-            child_dunder_dict[atribute_name] = atribute_name
+        return cls_instance
 
-        print(child_dunder_dict)
+    def __iter__(cls):
+        yield from cls.__keys
 
-        return super().__new__(mcs, name, bases, attr)
+    def __len__(cls):
+        return len(cls.__keys)
 
-    def __iter__(self):
-        yield from self.__dict__[SimplifiedEnum.child_name_plus_child_keys_var]
 
-    def __len__(self):
-        return len(self.__dict__[SimplifiedEnum.child_name_plus_child_keys_var])
+class ColorsEnum(metaclass=SimplifiedEnum):
+    __keys = ("XL", "L", "M", "S", "XS")

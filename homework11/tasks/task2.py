@@ -29,10 +29,10 @@ order_2 = Order(100, elder_discount)
 assert order_1.final_price() == 10
 
 """
-from abc import ABC
+from __future__ import annotations
 
 
-class Discount(ABC):
+class Discount:
     """The strategy interface declares operations common to all
     supported versions of some algorithm. The context uses this
     interface to call the algorithm defined by the concrete strategies.
@@ -46,8 +46,9 @@ class Discount(ABC):
                 f"Class {cls} lacks required discount class attribute"
             )
 
-    def final_price(self):
-        return self.price - self.price * self.discount_program.discount
+    @staticmethod
+    def final_price(order: Order) -> int:
+        return order.price - order.price * order.discount_program.discount
 
 
 class NoDiscount(Discount):
