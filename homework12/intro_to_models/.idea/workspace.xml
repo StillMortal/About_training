@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c82c34b5-6bad-4035-93c2-ad6e9c9db79d" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1mGDs45tpGw8X7iObPHfxuTKkaY" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../About_training" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Akilla2\PycharmProjects\first_dj\intro_to_models" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.models">
+    <configuration name="manage" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="intro_to_models" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="C:\Users\Akilla2\PycharmProjects\first_dj\Scripts\python.exe" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="manage.py" />
+      <option name="PARAMETERS" value="runserver" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="models" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="intro_to_models" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/my_models" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/my_models/models.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.models" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c82c34b5-6bad-4035-93c2-ad6e9c9db79d" name="Default Changelist" comment="" />
+      <created>1609111238719</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1609111238719</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Models.">
+      <created>1609334454284</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609334454284</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Models.">
+      <created>1609336992626</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1609336992626</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Models." />
+    <option name="LAST_COMMIT_MESSAGE" value="Models." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1229" y="13" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1609112134738">
+      <screen x="-1366" y="0" width="1366" height="728" />
+    </state>
+    <state x="-1229" y="13" width="1092" height="715" key="#com.intellij.execution.impl.EditConfigurationsDialog/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609112134738" />
+    <state x="399" y="293" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1609333507969">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="399" y="293" key="#com.intellij.fileTypes.FileTypeChooser/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609333507969" />
+    <state x="606" y="277" key="FileChooserDialogImpl" timestamp="1609335595487">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="-719" y="205" key="FileChooserDialogImpl/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609175702729" />
+    <state x="606" y="277" key="FileChooserDialogImpl/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609335595487" />
+    <state width="1259" height="263" key="GridCell.Tab.0.bottom" timestamp="1609287352714">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="1345" height="179" key="GridCell.Tab.0.bottom/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609112432150" />
+    <state width="1259" height="263" key="GridCell.Tab.0.bottom/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609287352714" />
+    <state width="1259" height="263" key="GridCell.Tab.0.center" timestamp="1609287352712">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="1345" height="179" key="GridCell.Tab.0.center/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609112432150" />
+    <state width="1259" height="263" key="GridCell.Tab.0.center/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609287352712" />
+    <state width="1259" height="263" key="GridCell.Tab.0.left" timestamp="1609287352708">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="1345" height="179" key="GridCell.Tab.0.left/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609112432150" />
+    <state width="1259" height="263" key="GridCell.Tab.0.left/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609287352708" />
+    <state width="1259" height="263" key="GridCell.Tab.0.right" timestamp="1609287352712">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state width="1345" height="179" key="GridCell.Tab.0.right/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609112432150" />
+    <state width="1259" height="263" key="GridCell.Tab.0.right/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609287352712" />
+    <state x="-1182" y="8" key="SettingsEditor" timestamp="1609111841875">
+      <screen x="-1366" y="0" width="1366" height="728" />
+    </state>
+    <state x="-1182" y="8" key="SettingsEditor/-1366.0.1366.728/0.0.1280.984@-1366.0.1366.728" timestamp="1609111841875" />
+    <state x="232" y="224" key="Vcs.Push.Dialog.v2" timestamp="1609337023722">
+      <screen x="0" y="0" width="1280" height="984" />
+    </state>
+    <state x="232" y="224" key="Vcs.Push.Dialog.v2/-1366.0.1366.728/0.0.1280.984@0.0.1280.984" timestamp="1609337023722" />
+  </component>
+</project>
