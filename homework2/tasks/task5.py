@@ -48,6 +48,8 @@ def custom_range(iterable: Any, *args) -> List:
             iterable.index(args[0]) : iterable.index(args[1]) : args[2]
         ]
     else:
-        raise ValueError("The function takes only 3 arguments in addition to the iterable.")
+        raise ValueError(
+            "The function takes only 3 arguments in addition to the iterable."
+        )
 
     return range_like

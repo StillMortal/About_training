@@ -52,7 +52,10 @@ def test_get_longest_diverse_words(path_to_file: str, expected_result: List[str]
     ["path_to_file", "expected_result"],
     [
         (os.path.abspath(os.path.dirname(__file__)) + "/data.txt", "›"),
-        (os.path.abspath(os.path.dirname(__file__)) + "/file_for_test_number_1.txt", "ɶ"),
+        (
+            os.path.abspath(os.path.dirname(__file__)) + "/file_for_test_number_1.txt",
+            "ɶ",
+        ),
     ],
 )
 def test_get_rarest_char(path_to_file: str, expected_result: str):
@@ -65,7 +68,10 @@ def test_get_rarest_char(path_to_file: str, expected_result: str):
     ["path_to_file", "expected_result"],
     [
         (os.path.abspath(os.path.dirname(__file__)) + "/data.txt", 5305),
-        (os.path.abspath(os.path.dirname(__file__)) + "/file_for_test_number_1.txt", 13),
+        (
+            os.path.abspath(os.path.dirname(__file__)) + "/file_for_test_number_1.txt",
+            13,
+        ),
     ],
 )
 def test_count_punctuation_chars(path_to_file: str, expected_result: int):
@@ -91,7 +97,10 @@ def test_count_non_ascii_chars(path_to_file: str, expected_result: int):
     ["path_to_file", "expected_result"],
     [
         (os.path.abspath(os.path.dirname(__file__)) + "/data.txt", "ä"),
-        (os.path.abspath(os.path.dirname(__file__)) + "/file_for_test_number_1.txt", "ɵ"),
+        (
+            os.path.abspath(os.path.dirname(__file__)) + "/file_for_test_number_1.txt",
+            "ɵ",
+        ),
     ],
 )
 def test_get_most_common_non_ascii_char(path_to_file: str, expected_result: str):

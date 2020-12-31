@@ -1,6 +1,7 @@
 from typing import Any, Callable, List, Tuple
 
 import pytest
+
 from homework3.tasks.task1 import cache
 
 
@@ -19,7 +20,9 @@ def args_len_plus_kwargs_len(*args, **kwargs):
         (func_for_the_test, 1, ([-1, 1, 3], [-1, 1, 3]), 3),
     ],
 )
-def test_cache_func(func_to_check: Callable, times: int, values: Tuple[List], expected_result: Any):
+def test_cache_func(
+    func_to_check: Callable, times: int, values: Tuple[List], expected_result: Any
+):
     cache_func = cache(times)(func_to_check)
     actual_result = cache_func(*values[0])
     actual_result2 = cache_func(*values[1])

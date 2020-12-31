@@ -1,6 +1,7 @@
 from typing import Dict, List
 
 import pytest
+
 from homework3.tasks.task3 import make_filter
 
 

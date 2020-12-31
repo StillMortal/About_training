@@ -1,4 +1,3 @@
-
 """
 In previous homework task 4,
 you wrote a cache function that remembers other function output value.
@@ -21,8 +20,8 @@ def f():
 ? 2
 '2'
 """
-from collections import Callable
 import functools
+from collections import Callable
 
 
 def cache(times=0) -> Callable:
@@ -35,6 +34,7 @@ def cache(times=0) -> Callable:
         Callable.
 
     """
+
     def cache_decorator(func: Callable) -> Callable:
         """Cache decorator.
 
@@ -51,13 +51,21 @@ def cache(times=0) -> Callable:
         def wrapper_function(*args, **kwargs):
             all_of_the_parameters = args + tuple(kwargs.items())
             if all_of_the_parameters not in used_parameters:
-                used_parameters[all_of_the_parameters] = [func(*args, **kwargs), times - 1]
+                used_parameters[all_of_the_parameters] = [
+                    func(*args, **kwargs),
+                    times - 1,
+                ]
             else:
                 if used_parameters[all_of_the_parameters][1] != -1:
                     used_parameters[all_of_the_parameters][1] -= 1
                 else:
-                    used_parameters[all_of_the_parameters] = [func(*args, **kwargs), times - 1]
+                    used_parameters[all_of_the_parameters] = [
+                        func(*args, **kwargs),
+                        times - 1,
+                    ]
 
             return used_parameters[all_of_the_parameters][0]
+
         return wrapper_function
+
     return cache_decorator

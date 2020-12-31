@@ -1,6 +1,7 @@
 from collections import Sequence
 
 import pytest
+
 from homework1.tasks.task2 import check_fibonacci
 
 

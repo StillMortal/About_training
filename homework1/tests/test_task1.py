@@ -1,4 +1,5 @@
 import pytest
+
 from homework1.tasks.task1 import check_power_of_2
 
 

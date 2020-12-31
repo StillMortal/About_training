@@ -1,6 +1,7 @@
 from typing import List
 
 import pytest
+
 from homework1.tasks.task5 import find_maximal_sum
 
 

@@ -18,7 +18,6 @@ Write a function that detects if a number is Armstrong number in functionaly sty
 ### Example function signature and call
 
 """
-from functools import lru_cache
 
 
 def is_armstrong(number: int) -> bool:
@@ -32,4 +31,6 @@ def is_armstrong(number: int) -> bool:
 
 
     """
-    return number == sum(map(lambda x: pow(x, len(str(number))), [int(i) for i in str(number)]))
+    return number == sum(
+        map(lambda x: pow(x, len(str(number))), [int(i) for i in str(number)])
+    )
