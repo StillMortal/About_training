@@ -188,3 +188,10 @@ class HomeworkResult(models.Model):
     homework = models.ForeignKey(Homework, on_delete=models.CASCADE, default=1)
     solution = models.CharField(max_length=50)
     created = models.DateTimeField()
+
+
+class OutOfAJob(models.Model):
+    """For personal use."""
+
+    class_var = models.CharField(max_length=50)
+    class_var2 = models.CharField(max_length=50)
